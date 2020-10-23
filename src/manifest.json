@@ -1,0 +1,33 @@
+{
+    "manifest_version": 2,
+
+    "name": "Thomson Analyzer Plugin",
+    "description": "This extension will analyze a page compliancelearning thomsonreuters com",
+    "version": "1.0",
+
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "128": "icon.png"
+    },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["contentscript.js"],
+        "all_frames": true
+    }],
+    "permissions": [
+        "activeTab",
+        "declarativeContent"
+    ],
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+A",
+                "mac": "MacCtrl+Shift+A"
+            },
+            "description": "Opens Thomson Analyzer Plugin"
+        }
+    }
+}
