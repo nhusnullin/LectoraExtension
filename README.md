@@ -1,3 +1,4 @@
+
 # How does it work
 
 The plugin tries to analyze your online test which constructed by https://www.lectoraonline.com/ platform and offers proper answers.
@@ -19,3 +20,7 @@ Being on the examine page you may use key binding MacCtrl+Shift+A (for mac) and 
 
 5. In some cases you may need to pin extension
 ![Screenshot](doc/4.png)
+
+# Disclaimer
+
+This plugin is provided AS IS without warranty of any kind. Keep in mind that only you is responsible for youe education and no one more. The entire risk arising out of the use of the plugin and documentation remains with you. In no event shall author be held liable for any damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or other pecuniary loss) arising out of the use of or inability to use the plugin or documentation. 
