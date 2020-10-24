@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
 
-    "name": "Thomson Analyzer Plugin",
-    "description": "This extension will analyze a page compliancelearning thomsonreuters com",
+    "name": "Lectora Analyzer Plugin",
+    "description": "This extension will help you to pass online test constructed by https://www.lectoraonline.com/",
     "version": "1.0",
 
     "browser_action": {
@@ -27,7 +27,7 @@
                 "default": "Ctrl+Shift+A",
                 "mac": "MacCtrl+Shift+A"
             },
-            "description": "Opens Thomson Analyzer Plugin"
+            "description": "Opens Lectora Analyzer Plugin"
         }
     }
 }
