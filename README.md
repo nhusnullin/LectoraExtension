@@ -23,4 +23,4 @@ Being on the examine page you may use key binding MacCtrl+Shift+A (for mac) and 
 
 # Disclaimer
 
-This plugin is provided AS IS without warranty of any kind. Keep in mind that only you is responsible for youe education and no one more. The entire risk arising out of the use of the plugin and documentation remains with you. In no event shall author be held liable for any damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or other pecuniary loss) arising out of the use of or inability to use the plugin or documentation. 
+This plugin is provided AS IS without warranty of any kind. Keep in mind that your education is only your responsibility. The entire risk arising out of the use of the plugin and documentation remains with you. In no event shall author be held liable for any damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or other pecuniary loss) arising out of the use of or inability to use the plugin or documentation. 
