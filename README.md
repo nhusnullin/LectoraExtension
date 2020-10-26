@@ -7,7 +7,7 @@ Being on the examine page you may use key binding MacCtrl+Shift+A (for mac) and 
 
 # How to install (manually)
 
-1. git clone git@github.com:nhusnullin/LectoraExtension.git
+1. git clone git@github.com:nhusnullin/LectoraExtension.git OR [download](https://github.com/nhusnullin/LectoraExtension/archive/v1.0.zip) and unpack
 
 2. Chrome -> More tools -> Extension
 ![Screenshot](doc/1.png)
