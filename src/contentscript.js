@@ -17,6 +17,7 @@ chrome.runtime.onMessage.addListener(
                     let beauty = beautify(convertedRightAnswer);
 
                     sendResponse({ farewell: beauty });
+
                     break;
                 }
             }
