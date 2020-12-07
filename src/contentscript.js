@@ -3,27 +3,84 @@ chrome.runtime.onMessage.addListener(
 
         if (request.greeting == "hello") {
             let list = document.all;
-
+			
             for (let item of list) {
 
                 if (item.innerHTML.indexOf("function checkQuestions") !== -1) {
 
                     let funcAsString = getFuncSrcFromInnerHtml(item.innerHTML);
 
-                    let rightAnswer = getRightAnswerFromFuncSrc(funcAsString);
-
+					let rightAnswer = getRightAnswerFromFuncSrc(funcAsString);
+					
                     let convertedRightAnswer = unicodeToChar(rightAnswer);
-
+					
+					highlightAndSubmitAnswers(convertedRightAnswer);
+					
                     let beauty = beautify(convertedRightAnswer);
 
                     sendResponse({ farewell: beauty });
-
                     break;
                 }
             }
 
         }
     });
+	
+function highlightAndSubmitAnswers(input){
+	let array = input.split(",");
+	
+	for (let item of array) {
+		highlightAndSubmitAnswer(item);
+    }
+	
+	highlightAndSubmitAnswer(input);
+}
+
+function highlightAndSubmitAnswer(input)
+{
+	var encodedItem = htmlCodeToChar(input);
+		
+	var span = getAnswerSpan(encodedItem);
+	if (span && span.parentElement)
+	{
+		span.parentElement.style.backgroundColor = 'green';
+		span.parentElement.setAttribute('class', 'correctAnswerStyle')
+	}
+	
+	var input = getAnswerInput(encodedItem);
+	if (input)
+	{
+		input.click();
+	}
+}
+	
+function getAnswerSpan(searchText) {
+    var spanTags = document.getElementsByTagName("span");
+	var found;
+
+	for (let span of spanTags) {
+      if (span.innerText == searchText) {
+		found = span;
+		break;
+	  }
+    }
+		
+	return found;
+}
+
+function getAnswerInput(searchText) {
+    var inputTags = document.getElementsByTagName("input");
+	var found;
+
+	for (let input of inputTags) {
+      if (input.value == searchText) {
+		found = input;
+		break;
+	  }
+    }
+		
+	return found;
+}
 
 function getFuncSrcFromInnerHtml(innerHTML) {
     let startIndex = innerHTML.indexOf("function checkQuestions");
@@ -43,6 +100,13 @@ function unicodeToChar(text) {
     return text.replace(/\\u[\dA-F]{4}/gi,
         function(match) {
             return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
+        });
+}
+
+function htmlCodeToChar(text) {
+    return text.replace(/&#[\d]+/gi,
+        function(match) {
+            return String.fromCharCode(parseInt(match.replace(/&#/g, '')));
         });
 }
 
