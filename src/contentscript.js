@@ -3,83 +3,108 @@ chrome.runtime.onMessage.addListener(
 
         if (request.greeting == "hello") {
             let list = document.all;
-			
+
             for (let item of list) {
 
                 if (item.innerHTML.indexOf("function checkQuestions") !== -1) {
-
+                    debugger;
                     let funcAsString = getFuncSrcFromInnerHtml(item.innerHTML);
+                    let rightAnswer = getRightAnswerFromFuncSrc(funcAsString);
 
-					let rightAnswer = getRightAnswerFromFuncSrc(funcAsString);
-					
-                    let convertedRightAnswer = unicodeToChar(rightAnswer);
-					
-					highlightAndSubmitAnswers(convertedRightAnswer);
-					
-                    let beauty = beautify(convertedRightAnswer);
+                    if (rightAnswer == "func") {
+                        // that means that format is changed and answer in separate span
+                        let answer = findCorrectAnswerSpan("correct answer");
+                        sendResponse({ farewell: answer });
+                    } else {
+                        let convertedRightAnswer = unicodeToChar(rightAnswer);
 
-                    sendResponse({ farewell: beauty });
+                        highlightAndSubmitAnswers(convertedRightAnswer);
+
+                        let beauty = beautify(convertedRightAnswer);
+
+                        sendResponse({ farewell: beauty });
+                    }
+
                     break;
                 }
             }
 
         }
     });
-	
-function highlightAndSubmitAnswers(input){
-	let array = input.split(",");
-	
-	for (let item of array) {
-		highlightAndSubmitAnswer(item);
+
+function highlightAndSubmitAnswers(input) {
+    let array = input.split(",");
+
+    for (let item of array) {
+        highlightAndSubmitAnswer(item);
     }
-	
-	highlightAndSubmitAnswer(input);
+
+    highlightAndSubmitAnswer(input);
 }
 
-function highlightAndSubmitAnswer(input)
-{
-	var encodedItem = htmlCodeToChar(input);
-		
-	var span = getAnswerSpan(encodedItem);
-	if (span && span.parentElement)
-	{
-		span.parentElement.style.backgroundColor = 'green';
-		span.parentElement.setAttribute('class', 'correctAnswerStyle')
-	}
-	
-	var input = getAnswerInput(encodedItem);
-	if (input)
-	{
-		input.click();
-	}
+function findCorrectAnswerSpan(input) {
+    var span = getContainsAnswerSpan(input);
+    if (span) {
+        return span.innerHTML;
+    }
+    return "The correct answer is not found";
 }
-	
+
+function highlightAndSubmitAnswer(input) {
+    var encodedItem = htmlCodeToChar(input);
+
+    var span = getAnswerSpan(encodedItem);
+    if (span && span.parentElement) {
+        span.parentElement.style.backgroundColor = 'green';
+        span.parentElement.setAttribute('class', 'correctAnswerStyle')
+    }
+
+    var input = getAnswerInput(encodedItem);
+    if (input) {
+        input.click();
+    }
+}
+
+function getContainsAnswerSpan(searchText) {
+    var spanTags = document.getElementsByTagName("span");
+    var found;
+
+    for (let span of spanTags) {
+        if (span.innerHTML.indexOf(searchText) !== -1) {
+            found = span;
+            break;
+        }
+    }
+
+    return found;
+}
+
 function getAnswerSpan(searchText) {
     var spanTags = document.getElementsByTagName("span");
-	var found;
+    var found;
 
-	for (let span of spanTags) {
-      if (span.innerText == searchText) {
-		found = span;
-		break;
-	  }
+    for (let span of spanTags) {
+        if (span.innerText == searchText) {
+            found = span;
+            break;
+        }
     }
-		
-	return found;
+
+    return found;
 }
 
 function getAnswerInput(searchText) {
     var inputTags = document.getElementsByTagName("input");
-	var found;
+    var found;
 
-	for (let input of inputTags) {
-      if (input.value == searchText) {
-		found = input;
-		break;
-	  }
+    for (let input of inputTags) {
+        if (input.value == searchText) {
+            found = input;
+            break;
+        }
     }
-		
-	return found;
+
+    return found;
 }
 
 function getFuncSrcFromInnerHtml(innerHTML) {
