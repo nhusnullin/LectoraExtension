@@ -3,7 +3,7 @@
 
     "name": "Lectora Analyzer Plugin",
     "description": "This extension will help you to pass online test constructed by https://www.lectoraonline.com/",
-    "version": "1.2",
+    "version": "1.3",
 
     "browser_action": {
         "default_icon": "icon.png",

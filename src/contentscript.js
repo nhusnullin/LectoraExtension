@@ -7,13 +7,13 @@ chrome.runtime.onMessage.addListener(
             for (let item of list) {
 
                 if (item.innerHTML.indexOf("function checkQuestions") !== -1) {
-                    debugger;
+
                     let funcAsString = getFuncSrcFromInnerHtml(item.innerHTML);
                     let rightAnswer = getRightAnswerFromFuncSrc(funcAsString);
 
                     if (rightAnswer == "func") {
                         // that means that format is changed and answer in separate span
-                        let answer = findCorrectAnswerSpan("correct answer");
+                        let answer = findCorrectAnswerSpan();
                         sendResponse({ farewell: answer });
                     } else {
                         let convertedRightAnswer = unicodeToChar(rightAnswer);
@@ -42,10 +42,13 @@ function highlightAndSubmitAnswers(input) {
     highlightAndSubmitAnswer(input);
 }
 
-function findCorrectAnswerSpan(input) {
-    var span = getContainsAnswerSpan(input);
-    if (span) {
-        return span.innerHTML;
+function findCorrectAnswerSpan() {
+    var list = ["All the options are correct", "The corrrect answer"];
+    for (let input of list) {
+        var span = getContainsAnswerSpan(input);
+        if (span) {
+            return span.innerHTML;
+        }
     }
     return "The correct answer is not found";
 }
