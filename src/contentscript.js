@@ -43,7 +43,7 @@ function highlightAndSubmitAnswers(input) {
 }
 
 function findCorrectAnswerSpan() {
-    debugger;
+
     var list = ["All the options are correct", "The correct answer"];
     for (let input of list) {
         var span = getContainsAnswerSpan(input);
