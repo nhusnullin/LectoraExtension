@@ -29,6 +29,7 @@ This plugin is provided AS IS without warranty of any kind. Keep in mind that yo
 Many hands can make a big difference. If my work helps you, you can donate it in the following way.
 
 BTC: 3FEccKPdFaGwgJ8uDdLCvDNJJQFTGPdmD9
+
 ETH: 0x02ca071c96353b839556e9c2f7d7ac7d0582b73e
 
 OR YooMoney Card: 4048 4150 2972 8082
